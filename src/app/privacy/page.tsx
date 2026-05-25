@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Политика конфиденциальности — ${site.brand}`,
+  title: "Политика конфиденциальности",
   description:
     "Политика обработки персональных данных пользователей сайта DentalCare.",
   alternates: {

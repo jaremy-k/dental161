@@ -6,7 +6,6 @@ export const site = {
   phone: "+79959186061",
   phoneDisplay: "+7 (995) 918-60-61",
   whatsapp: "https://wa.me/79959186061",
-  telegram: "https://t.me/dentalcare161",
   schedule: "Пн–Сб, 9:00–20:00",
   city: "Ростов-на-Дону",
   reviewLinks: [

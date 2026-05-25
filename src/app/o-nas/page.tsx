@@ -8,7 +8,7 @@ import { Header } from "@/components/Header";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `О нас — ${site.brand}`,
+  title: "О нас",
   description:
     "Сеть стоматологических клиник ДенталКеа в Ростове-на-Дону: терапия, хирургия, ортопедия, имплантация ALL ON 4/6, детская стоматология.",
   alternates: {

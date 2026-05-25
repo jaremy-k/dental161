@@ -31,12 +31,6 @@ export function Contacts() {
                 >
                   Написать в WhatsApp
                 </a>
-                <a
-                  href={site.telegram}
-                  className="rounded-full bg-accent-light px-4 py-2 text-sm font-semibold text-accent-dark transition hover:bg-sky-100"
-                >
-                  Telegram
-                </a>
               </div>
               {site.locations.map((loc) => (
                 <div

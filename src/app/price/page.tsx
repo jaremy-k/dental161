@@ -13,7 +13,7 @@ import {
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Цены — ${site.brand}`,
+  title: "Цены",
   description:
     "Прайс-лист стоматологии ДенталКеа в Ростове-на-Дону: терапия, ортопедия, хирургия, имплантация и протезирование.",
   alternates: {

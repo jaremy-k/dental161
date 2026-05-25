@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/lib/site";
 
 export function StickyMobileCta() {
@@ -16,12 +17,12 @@ export function StickyMobileCta() {
         >
           WhatsApp
         </a>
-        <a
+        <Link
           href="/#callback"
           className="rounded-full bg-accent px-3 py-2.5 text-center text-sm font-semibold text-white"
         >
           Запись
-        </a>
+        </Link>
       </div>
     </div>
   );

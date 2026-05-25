@@ -31,7 +31,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${service.title} в Ростове-на-Дону — ${site.brand}`,
+    title: `${service.title} в Ростове-на-Дону`,
     description: `${service.lead} ${site.name}: ${site.schedule}, ${site.phoneDisplay}.`,
     alternates: {
       canonical: `${site.url}/services/${service.slug}`,

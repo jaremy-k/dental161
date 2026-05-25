@@ -7,7 +7,7 @@ import { dentalServices } from "@/lib/services";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Услуги стоматологии в Ростове-на-Дону — ${site.brand}`,
+  title: "Услуги стоматологии в Ростове-на-Дону",
   description:
     "Лечение зубов, имплантация, протезирование, хирургия, ортодонтия, детская стоматология и диагностика в DentalCare.",
   alternates: {

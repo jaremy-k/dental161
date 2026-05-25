@@ -178,9 +178,6 @@ export function ContactForm() {
         <a className="font-semibold text-accent hover:text-accent-dark" href={site.whatsapp}>
           WhatsApp
         </a>
-        <a className="font-semibold text-accent hover:text-accent-dark" href={site.telegram}>
-          Telegram
-        </a>
       </div>
     </form>
   );

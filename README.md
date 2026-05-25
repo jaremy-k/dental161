@@ -34,7 +34,7 @@ npm run dev
 ## Бренд
 
 - Акцентный цвет: `#00AEEF`
-- Логотипы: `public/logo.svg`, `public/logo-white.svg`
+- Логотипы: `public/logo.svg`, `public/logo-white.png`
 
 ## Заявки
 
