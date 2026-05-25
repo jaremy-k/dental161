@@ -6,11 +6,11 @@ export function Services() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Полный спектр стоматологии
+            Предоставляемые услуги
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            Терапия, хирургия, ортопедия и ортодонтия — от профилактики до
-            сложной имплантации в одной сети клиник.
+            Современная стоматология для всей семьи — от профилактики до сложной
+            имплантации
           </p>
         </div>
 

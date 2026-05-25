@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { aboutDoctors, aboutIntro, aboutPriorities } from "@/lib/about";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Doctors } from "@/components/Doctors";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site } from "@/lib/site";
@@ -59,46 +60,42 @@ export default function AboutPage() {
 
         <section className="py-12 sm:py-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-              <div>
-                <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-                  {aboutDoctors.title}
-                </h2>
-                <p className="mt-4 leading-relaxed text-slate-600">
-                  {aboutDoctors.text}
-                </p>
-              </div>
-              <div className="rounded-3xl bg-accent-light p-8">
-                <h3 className="font-semibold text-slate-900">Наши клиники</h3>
-                <ul className="mt-4 space-y-4">
-                  {site.locations.map((loc) => (
-                    <li key={loc.address}>
-                      <p className="font-medium text-slate-800">{loc.title}</p>
-                      <p className="text-sm text-slate-600">{loc.address}</p>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-4 text-sm text-slate-600">
-                  {site.schedule}
-                </p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <Link
-                    href="/#callback"
-                    className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-dark"
-                  >
-                    Записаться
-                  </Link>
-                  <Link
-                    href="/price"
-                    className="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-accent hover:text-accent"
-                  >
-                    Смотреть цены
-                  </Link>
-                </div>
+            <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+              {aboutDoctors.title}
+            </h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-slate-600">
+              {aboutDoctors.text}
+            </p>
+            <div className="mt-8 rounded-3xl bg-accent-light p-8">
+              <h3 className="font-semibold text-slate-900">Наши клиники</h3>
+              <ul className="mt-4 space-y-4 sm:grid sm:grid-cols-2 sm:gap-4 sm:space-y-0">
+                {site.locations.map((loc) => (
+                  <li key={loc.address}>
+                    <p className="font-medium text-slate-800">{loc.title}</p>
+                    <p className="text-sm text-slate-600">{loc.address}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm text-slate-600">{site.schedule}</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/#callback"
+                  className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-dark"
+                >
+                  Записаться
+                </Link>
+                <Link
+                  href="/price"
+                  className="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-accent hover:text-accent"
+                >
+                  Смотреть цены
+                </Link>
               </div>
             </div>
           </div>
         </section>
+
+        <Doctors />
       </main>
       <Footer />
     </>

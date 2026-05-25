@@ -46,42 +46,48 @@ export function Hero() {
             </div>
             <div className="col-span-2 sm:col-span-1">
               <dt className="text-2xl font-bold text-accent">9–20</dt>
-              <dd className="mt-1 text-sm text-slate-600">пн–сб, без выходных вечером</dd>
+              <dd className="mt-1 text-sm text-slate-600">
+                пн–сб, без выходных вечером
+              </dd>
             </div>
           </dl>
         </div>
 
-        <div className="relative">
-          <div className="rounded-3xl border border-slate-100 bg-gradient-to-br from-accent-light to-white p-8 shadow-xl shadow-slate-200/50">
-            <h2 className="text-xl font-bold text-slate-900">
-              Нужна помощь сегодня?
-            </h2>
-            <p className="mt-3 text-slate-600">
-              Острая боль или травма — принимаем в экстренном порядке. Каждый
-              день зарезервированы окна для срочных пациентов.
-            </p>
-            <ul className="mt-6 space-y-3">
-              {[
-                "Консультация и план лечения",
-                "ALL ON 4 и ALL ON 6",
-                "Диагностика в клинике",
-                "Накопительные скидки для семьи",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3 text-slate-700">
-                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-xs text-white">
-                    ✓
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <a
-              href="#callback"
-              className="mt-8 block rounded-2xl bg-slate-900 py-3.5 text-center font-semibold text-white transition hover:bg-slate-800"
-            >
-              Бесплатная консультация
-            </a>
-          </div>
+        <div className="rounded-3xl border border-slate-100 bg-gradient-to-br from-accent-light to-white p-8 shadow-xl shadow-slate-200/50">
+          <h2 className="text-xl font-bold text-slate-900">
+            Нужна помощь сегодня?
+          </h2>
+          <p className="mt-3 text-slate-600">
+            Острая боль или травма — принимаем в экстренном порядке. Каждый день
+            зарезервированы окна для срочных пациентов.
+          </p>
+          <ul className="mt-6 space-y-3">
+            {[
+              "Консультация и план лечения",
+              "ALL ON 4 и ALL ON 6",
+              "Диагностика в клинике",
+              "Накопительные скидки для семьи",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3 text-slate-700">
+                <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-xs text-white">
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a
+            href="#doctors"
+            className="mt-6 block text-center text-sm font-medium text-accent hover:text-accent-dark"
+          >
+            Наша команда врачей →
+          </a>
+          <a
+            href="#callback"
+            className="mt-4 block rounded-2xl bg-slate-900 py-3.5 text-center font-semibold text-white transition hover:bg-slate-800"
+          >
+            Бесплатная консультация
+          </a>
         </div>
       </div>
     </section>

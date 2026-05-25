@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:up": "docker compose up --build",
+    "docker:dev": "docker compose --profile dev up --build"
   },
   "dependencies": {
     "next": "^16.2.6",
