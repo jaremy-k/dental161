@@ -34,7 +34,13 @@ npm run dev
 ## Бренд
 
 - Акцентный цвет: `#00AEEF`
-- Логотипы: `public/logo.png`, `public/logo-white.png`
+- Логотипы: `public/logo.svg`, `public/logo-white.svg`
+
+## Заявки
+
+Форма отправляет POST на `/api/callback`. Если задать переменные окружения
+`TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID`, заявки будут уходить в Telegram.
+Без них заявка принимается приложением и выводится в серверный лог.
 
 ## Сборка
 

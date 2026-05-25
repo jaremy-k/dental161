@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -6,7 +7,7 @@ export function Footer() {
     <footer className="border-t border-slate-200 bg-white py-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-4 sm:px-6 md:flex-row md:justify-between">
         <Image
-          src="/logo.png"
+          src="/logo.svg"
           alt={site.brand}
           width={120}
           height={42}
@@ -19,6 +20,11 @@ export function Footer() {
           <p className="mt-1">
             {site.legal.company} · ОГРН {site.legal.ogrn} · ИНН{" "}
             {site.legal.inn}
+          </p>
+          <p className="mt-2">
+            <Link href="/privacy" className="hover:text-accent">
+              Политика конфиденциальности
+            </Link>
           </p>
         </div>
       </div>

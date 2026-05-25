@@ -35,6 +35,28 @@ export function Doctors() {
                   {doctor.name}
                 </h3>
                 <p className="mt-1 text-sm text-accent-dark">{doctor.role}</p>
+                <p className="mt-2 text-sm font-medium text-slate-700">
+                  {doctor.experience}
+                </p>
+                <p className="mt-1 text-xs text-slate-500">
+                  Приём: {doctor.location}
+                </p>
+                <ul className="mt-3 flex flex-wrap gap-1.5">
+                  {doctor.focus.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-slate-600"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#callback"
+                  className="mt-4 inline-flex text-sm font-semibold text-accent hover:text-accent-dark"
+                >
+                  Записаться к врачу →
+                </a>
               </div>
             </article>
           ))}

@@ -48,7 +48,7 @@ export const site = {
 
 export const nav = [
   { href: "/o-nas", label: "О нас" },
-  { href: "/#services", label: "Услуги" },
+  { href: "/services", label: "Услуги" },
   { href: "/#doctors", label: "Врачи" },
   { href: "/price", label: "Цены" },
   { href: "/#contacts", label: "Контакты" },

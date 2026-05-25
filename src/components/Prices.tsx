@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { PriceTable } from "@/components/PriceTable";
-import { priceCategories, priceDisclaimer } from "@/lib/prices";
+import {
+  priceCategories,
+  priceDisclaimer,
+  treatmentPackages,
+} from "@/lib/prices";
 
 const priceHighlights = priceCategories.flatMap((c) => c.items).slice(0, 6);
 
@@ -33,6 +37,23 @@ export function Prices() {
               Консультация
             </Link>
           </div>
+        </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-4">
+          {treatmentPackages.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-2xl border border-slate-700 bg-slate-800/40 p-5"
+            >
+              <h3 className="font-semibold text-white">{item.title}</h3>
+              <p className="mt-2 text-2xl font-bold text-accent">
+                {item.price}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                {item.description}
+              </p>
+            </article>
+          ))}
         </div>
 
         <div className="mt-12">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { aboutPriorities } from "@/lib/about";
+import { site } from "@/lib/site";
 
 export function Advantages() {
   const highlights = aboutPriorities.slice(0, 6);
@@ -41,6 +42,27 @@ export function Advantages() {
             Подробнее о клинике →
           </Link>
         </p>
+
+        <div className="mt-10 rounded-2xl bg-slate-50 p-6 text-center">
+          <h3 className="text-lg font-semibold text-slate-900">
+            Проверьте нас на картах
+          </h3>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-600">
+            Перед записью можно посмотреть карточки клиники, маршрут и отзывы
+            пациентов на популярных сервисах.
+          </p>
+          <div className="mt-5 flex flex-wrap justify-center gap-3">
+            {site.reviewLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-accent hover:text-accent"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -13,7 +13,7 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <Link href="/" className="shrink-0">
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt={site.brand}
             width={140}
             height={48}
@@ -35,6 +35,12 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 md:flex">
+          <a
+            href={site.whatsapp}
+            className="text-sm font-semibold text-emerald-600 hover:text-emerald-700"
+          >
+            WhatsApp
+          </a>
           <a
             href={`tel:${site.phone}`}
             className="text-sm font-semibold text-slate-800 hover:text-accent"
@@ -86,6 +92,9 @@ export function Header() {
               className="pt-2 font-semibold text-accent"
             >
               {site.phoneDisplay}
+            </a>
+            <a href={site.whatsapp} className="font-semibold text-emerald-600">
+              Написать в WhatsApp
             </a>
             <Link
               href="/#callback"

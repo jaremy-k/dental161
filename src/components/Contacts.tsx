@@ -1,5 +1,6 @@
 "use client";
 
+import { ContactForm } from "@/components/ContactForm";
 import { site } from "@/lib/site";
 
 export function Contacts() {
@@ -23,6 +24,20 @@ export function Contacts() {
               >
                 {site.phoneDisplay}
               </a>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={site.whatsapp}
+                  className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100"
+                >
+                  Написать в WhatsApp
+                </a>
+                <a
+                  href={site.telegram}
+                  className="rounded-full bg-accent-light px-4 py-2 text-sm font-semibold text-accent-dark transition hover:bg-sky-100"
+                >
+                  Telegram
+                </a>
+              </div>
               {site.locations.map((loc) => (
                 <div
                   key={loc.address}
@@ -30,80 +45,19 @@ export function Contacts() {
                 >
                   <h3 className="font-semibold text-slate-900">{loc.title}</h3>
                   <p className="mt-1 text-slate-600">{loc.address}</p>
+                  <a
+                    href={loc.mapHref}
+                    className="mt-3 inline-flex text-sm font-semibold text-accent hover:text-accent-dark"
+                  >
+                    Открыть на карте
+                  </a>
                 </div>
               ))}
             </div>
           </div>
 
           <div id="callback" className="scroll-mt-24">
-            <form
-              className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg shadow-slate-200/40"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const form = e.currentTarget;
-                const name = (
-                  form.elements.namedItem("name") as HTMLInputElement
-                ).value;
-                alert(
-                  `Спасибо, ${name || "гость"}! Мы перезвоним вам в ближайшее время.`,
-                );
-                form.reset();
-              }}
-            >
-              <h3 className="text-xl font-bold text-slate-900">
-                Заказать звонок
-              </h3>
-              <p className="mt-2 text-sm text-slate-600">
-                Оставьте номер — администратор свяжется с вами для записи на
-                приём.
-              </p>
-
-              <div className="mt-6 space-y-4">
-                <label className="block">
-                  <span className="text-sm font-medium text-slate-700">
-                    Ваше имя
-                  </span>
-                  <input
-                    name="name"
-                    type="text"
-                    required
-                    className="mt-1.5 w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-900 outline-none ring-accent/0 transition focus:border-accent focus:ring-2 focus:ring-accent/20"
-                    placeholder="Как к вам обращаться?"
-                  />
-                </label>
-                <label className="block">
-                  <span className="text-sm font-medium text-slate-700">
-                    Телефон
-                  </span>
-                  <input
-                    name="phone"
-                    type="tel"
-                    required
-                    className="mt-1.5 w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-900 outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
-                    placeholder="+7 (___) ___-__-__"
-                  />
-                </label>
-                <label className="flex items-start gap-3">
-                  <input
-                    name="consent"
-                    type="checkbox"
-                    required
-                    className="mt-1 h-4 w-4 rounded border-slate-300 text-accent focus:ring-accent"
-                  />
-                  <span className="text-xs leading-relaxed text-slate-500">
-                    Даю согласие на обработку персональных данных в соответствии
-                    с политикой конфиденциальности
-                  </span>
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                className="mt-6 w-full rounded-full bg-accent py-3.5 font-semibold text-white transition hover:bg-accent-dark"
-              >
-                Отправить заявку
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>

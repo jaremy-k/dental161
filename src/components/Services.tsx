@@ -1,4 +1,5 @@
-import { services } from "@/lib/site";
+import Link from "next/link";
+import { dentalServices } from "@/lib/services";
 
 export function Services() {
   return (
@@ -15,19 +16,23 @@ export function Services() {
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <article
+          {dentalServices.map((service) => (
+            <Link
               key={service.title}
+              href={`/services/${service.slug}`}
               className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-accent/30 hover:shadow-md"
             >
               <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-light text-accent">
                 <span className="text-lg font-bold">
-                  {service.title.charAt(0)}
+                  {service.shortTitle.charAt(0)}
                 </span>
               </div>
               <h3 className="text-xl font-semibold text-slate-900">
-                {service.title}
+                {service.shortTitle}
               </h3>
+              <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-accent-dark">
+                {service.patientIntent}
+              </p>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 {service.description}
               </p>
@@ -41,7 +46,10 @@ export function Services() {
                   </li>
                 ))}
               </ul>
-            </article>
+              <span className="mt-5 inline-flex text-sm font-semibold text-accent group-hover:text-accent-dark">
+                Подробнее и цены →
+              </span>
+            </Link>
           ))}
         </div>
       </div>

@@ -11,6 +11,18 @@ export const metadata: Metadata = {
   title: `О нас — ${site.brand}`,
   description:
     "Сеть стоматологических клиник ДенталКеа в Ростове-на-Дону: терапия, хирургия, ортопедия, имплантация ALL ON 4/6, детская стоматология.",
+  alternates: {
+    canonical: `${site.url}/o-nas`,
+  },
+  openGraph: {
+    title: `О клинике — ${site.brand}`,
+    description:
+      "Две стоматологические клиники DentalCare в Ростове-на-Дону, врачи, направления лечения и преимущества.",
+    url: `${site.url}/o-nas`,
+    siteName: site.brand,
+    locale: "ru_RU",
+    type: "website",
+  },
 };
 
 export default function AboutPage() {

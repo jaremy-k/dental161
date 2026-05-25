@@ -3,11 +3,12 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { PriceTable } from "@/components/PriceTable";
+import { PriceSearchTable } from "@/components/PriceSearchTable";
 import {
   priceCategories,
   priceDisclaimer,
   priceIntro,
+  treatmentPackages,
 } from "@/lib/prices";
 import { site } from "@/lib/site";
 
@@ -15,6 +16,18 @@ export const metadata: Metadata = {
   title: `Цены — ${site.brand}`,
   description:
     "Прайс-лист стоматологии ДенталКеа в Ростове-на-Дону: терапия, ортопедия, хирургия, имплантация и протезирование.",
+  alternates: {
+    canonical: `${site.url}/price`,
+  },
+  openGraph: {
+    title: `Цены стоматологии — ${site.brand}`,
+    description:
+      "Прайс-лист, популярные пакеты лечения и запись на консультацию в DentalCare.",
+    url: `${site.url}/price`,
+    siteName: site.brand,
+    locale: "ru_RU",
+    type: "website",
+  },
 };
 
 export default function PricePage() {
@@ -36,14 +49,33 @@ export default function PricePage() {
 
         <section className="py-12 sm:py-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <PriceTable categories={priceCategories} />
+            <div className="mb-12 grid gap-4 md:grid-cols-4">
+              {treatmentPackages.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                >
+                  <h2 className="text-base font-semibold text-slate-900">
+                    {item.title}
+                  </h2>
+                  <p className="mt-2 text-2xl font-bold text-accent-dark">
+                    {item.price}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+
+            <PriceSearchTable categories={priceCategories} />
 
             <div className="mt-12 rounded-2xl bg-accent-light p-6 sm:p-8">
               <p className="text-slate-700">{priceIntro.note}</p>
               <p className="mt-4 text-slate-600">
-                Сделать дешевле и качественно — на наш взгляд, довольно
-                сомнительно. В нашей стоматологии хорошее оборудование и опытные
-                врачи.
+                Стоимость может меняться в зависимости от диагностики,
+                материалов и объёма лечения. Перед началом процедур врач
+                объяснит варианты и поможет выбрать оптимальный план.
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
                 <Link
