@@ -17,13 +17,14 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {site.brand}. Все права защищены.
           </p>
-          <p className="mt-1">
-            {site.legal.company} · ОГРН {site.legal.ogrn} · ИНН{" "}
-            {site.legal.inn}
-          </p>
+          <p className="mt-1">3 клиники DentalCare в Ростове-на-Дону</p>
           <p className="mt-2">
             <Link href="/privacy" className="hover:text-accent">
               Политика конфиденциальности
+            </Link>
+            <span className="mx-2">·</span>
+            <Link href="/requisites" className="hover:text-accent">
+              Реквизиты
             </Link>
           </p>
         </div>

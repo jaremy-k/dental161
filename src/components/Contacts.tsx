@@ -32,21 +32,46 @@ export function Contacts() {
                   Написать в WhatsApp
                 </a>
               </div>
-              {site.locations.map((loc) => (
-                <div
-                  key={loc.address}
-                  className="rounded-2xl border border-slate-200 bg-white p-5"
-                >
-                  <h3 className="font-semibold text-slate-900">{loc.title}</h3>
-                  <p className="mt-1 text-slate-600">{loc.address}</p>
-                  <a
-                    href={loc.mapHref}
-                    className="mt-3 inline-flex text-sm font-semibold text-accent hover:text-accent-dark"
+              {site.locations.map((loc) => {
+                const legalEntity = site.legalEntities.find(
+                  (entity) => entity.id === loc.legalEntityId,
+                );
+
+                return (
+                  <div
+                    key={loc.address}
+                    className="rounded-2xl border border-slate-200 bg-white p-5"
                   >
-                    Открыть на карте
-                  </a>
-                </div>
-              ))}
+                    <h3 className="font-semibold text-slate-900">
+                      {loc.title}
+                    </h3>
+                    <p className="mt-1 text-slate-600">{loc.address}</p>
+                    <a
+                      href={`tel:${loc.phone}`}
+                      className="mt-2 inline-flex text-base font-semibold text-slate-900 hover:text-accent"
+                    >
+                      {loc.phoneDisplay}
+                    </a>
+                    {legalEntity && (
+                      <p className="mt-2 text-xs text-slate-500">
+                        Юр. лицо: {legalEntity.company}, ИНН{" "}
+                        {legalEntity.inn}
+                      </p>
+                    )}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {loc.mapLinks.map((link) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-accent hover:text-accent"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 

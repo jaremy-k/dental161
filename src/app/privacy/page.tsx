@@ -25,7 +25,7 @@ export default function PrivacyPage() {
               Политика конфиденциальности
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-slate-600">
-              Настоящая политика описывает, как {site.legal.company} обрабатывает
+              Настоящая политика описывает, как клиники DentalCare обрабатывают
               персональные данные, которые пользователь оставляет на сайте.
             </p>
           </div>
@@ -62,12 +62,21 @@ export default function PrivacyPage() {
             </div>
             <div>
               <h2 className="text-xl font-semibold text-slate-900">
-                Контакты оператора
+                Операторы персональных данных
               </h2>
-              <p className="mt-3 leading-relaxed">
-                {site.legal.company}, ОГРН {site.legal.ogrn}, ИНН{" "}
-                {site.legal.inn}. Телефон:{" "}
-                <a className="font-semibold text-accent" href={`tel:${site.phone}`}>
+              <ul className="mt-3 space-y-3 leading-relaxed">
+                {site.legalEntities.map((entity) => (
+                  <li key={entity.inn}>
+                    {entity.company}, ОГРН {entity.ogrn}, ИНН {entity.inn}.
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4">
+                Телефон для связи:{" "}
+                <a
+                  className="font-semibold text-accent"
+                  href={`tel:${site.phone}`}
+                >
                   {site.phoneDisplay}
                 </a>
                 .
