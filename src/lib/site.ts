@@ -75,7 +75,7 @@ export const site = {
       address: "Красноармейская ул., 157Б, Ростов-на-Дону",
       phone: "+78632888555",
       phoneDisplay: "+7 (863) 288-85-55",
-      legalEntityId: "dentalkea",
+      legalEntityId: "nis22",
       mapHref: "https://yandex.ru/profile/1247933454?lang=ru",
       mapLinks: [
         {
@@ -120,7 +120,7 @@ export const site = {
       address: "ул. Кулагина, 21, Ростов-на-Дону",
       phone: "+79515201573",
       phoneDisplay: "+7 (951) 520-15-73",
-      legalEntityId: "nis22",
+      legalEntityId: "dentalkea",
       mapHref: "https://yandex.ru/profile/26139202377?lang=ru",
       mapLinks: [
         {
