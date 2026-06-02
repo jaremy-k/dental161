@@ -5,6 +5,7 @@ export type Doctor = {
   experience: string;
   focus: string[];
   location: string;
+  locationIds: string[];
   image: string;
 };
 
@@ -16,6 +17,7 @@ export const doctors: Doctor[] = [
     experience: "Стаж более 15 лет",
     focus: ["Протезирование", "Коронки", "Сложные планы лечения"],
     location: "Орбитальная / Кулагина",
+    locationIds: ["orbitalnaya", "kulagina"],
     image: "/images/doctors/koccharov.jpg",
   },
   {
@@ -25,16 +27,18 @@ export const doctors: Doctor[] = [
     experience: "Стаж более 10 лет",
     focus: ["Имплантация", "Удаление зубов", "ALL ON 4 / ALL ON 6"],
     location: "Орбитальная / Кулагина",
+    locationIds: ["orbitalnaya", "kulagina"],
     image: "/images/doctors/tonyan.jpg",
   },
   {
-    slug: "tikhomirova",
-    name: "Тихомирова Ольга Владимировна",
-    role: "Стоматолог-терапевт",
-    experience: "Терапевтический приём",
-    focus: ["Кариес", "Пульпит", "Реставрации"],
-    location: "Орбитальная",
-    image: "/images/doctors/tikhomirova.jpg",
+    slug: "spanderashvili",
+    name: "Спандерашвили Паата Шотаевич",
+    role: "Стоматолог-хирург, хирург-имплантолог",
+    experience: "Хирургический приём",
+    focus: ["Имплантация", "Удаление зубов", "Хирургия"],
+    location: "Красноармейская",
+    locationIds: ["krasnoarmeyskaya"],
+    image: "/images/doctors/spanderashvili.svg",
   },
   {
     slug: "ivanova",
@@ -43,16 +47,8 @@ export const doctors: Doctor[] = [
     experience: "Ортодонтический приём",
     focus: ["Прикус", "Брекеты", "Элайнеры"],
     location: "Кулагина",
+    locationIds: ["kulagina"],
     image: "/images/doctors/ivanova.jpg",
-  },
-  {
-    slug: "cherkashina",
-    name: "Черкашина Лилия Владимировна",
-    role: "Стоматолог",
-    experience: "Семейный приём",
-    focus: ["Профилактика", "Лечение зубов", "Гигиена"],
-    location: "Орбитальная",
-    image: "/images/doctors/cherkashina.jpg",
   },
   {
     slug: "bogush",
@@ -61,6 +57,7 @@ export const doctors: Doctor[] = [
     experience: "Терапевтический приём",
     focus: ["Кариес", "Эстетика", "Профилактика"],
     location: "Кулагина",
+    locationIds: ["kulagina"],
     image: "/images/doctors/bogush.jpg",
   },
   {
@@ -70,6 +67,11 @@ export const doctors: Doctor[] = [
     experience: "Ассистирование врачам",
     focus: ["Комфорт приёма", "Подготовка кабинета", "Сопровождение"],
     location: "Орбитальная / Кулагина",
+    locationIds: ["orbitalnaya", "kulagina"],
     image: "/images/doctors/tatarinova.jpg",
   },
 ];
+
+export function getDoctorsByLocationSlug(slug: string) {
+  return doctors.filter((doctor) => doctor.locationIds.includes(slug));
+}

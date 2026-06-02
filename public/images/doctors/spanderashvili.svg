@@ -1,0 +1,10 @@
+<svg width="533" height="800" viewBox="0 0 533 800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Спандерашвили Паата Шотаевич</title>
+  <desc id="desc">Временная карточка врача до загрузки фотографии</desc>
+  <rect width="533" height="800" fill="#E6F7FD"/>
+  <circle cx="266.5" cy="286" r="114" fill="#00AEEF" fill-opacity=".18"/>
+  <circle cx="266.5" cy="246" r="72" fill="#00AEEF" fill-opacity=".32"/>
+  <path d="M137 606c17-91 82-145 129-145s112 54 129 145" fill="#00AEEF" fill-opacity=".32"/>
+  <text x="266.5" y="670" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#0090C8">П. Ш.</text>
+  <text x="266.5" y="716" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#334155">хирург-имплантолог</text>
+</svg>

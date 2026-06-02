@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const staticPages = [
     "",
+    "/clinics",
     "/services",
     "/price",
     "/o-nas",
@@ -25,5 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...servicePages];
+  const clinicPages = site.locations.map((location) => ({
+    url: `${site.url}/clinics/${location.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.85,
+  }));
+
+  return [...staticPages, ...servicePages, ...clinicPages];
 }

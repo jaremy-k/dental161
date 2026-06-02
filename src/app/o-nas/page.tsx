@@ -86,6 +86,12 @@ export default function AboutPage() {
                     <p className="font-medium text-slate-800">{loc.title}</p>
                     <p className="text-sm text-slate-600">{loc.address}</p>
                     <div className="mt-2 flex flex-wrap gap-2">
+                      <Link
+                        href={`/clinics/${loc.slug}`}
+                        className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white transition hover:bg-accent-dark"
+                      >
+                        Врачи филиала
+                      </Link>
                       {loc.mapLinks.map((link) => (
                         <a
                           key={link.href}

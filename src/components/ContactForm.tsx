@@ -175,9 +175,15 @@ export function ContactForm() {
         <a className="font-semibold text-accent hover:text-accent-dark" href={`tel:${site.phone}`}>
           Позвонить
         </a>
-        <a className="font-semibold text-accent hover:text-accent-dark" href={site.whatsapp}>
-          WhatsApp
-        </a>
+        {site.messengers.map((messenger) => (
+          <a
+            key={messenger.label}
+            className="font-semibold text-accent hover:text-accent-dark"
+            href={messenger.href}
+          >
+            {messenger.label}
+          </a>
+        ))}
       </div>
     </form>
   );

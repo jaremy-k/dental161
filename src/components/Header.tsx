@@ -93,9 +93,15 @@ export function Header() {
             >
               {site.phoneDisplay}
             </a>
-            <a href={site.whatsapp} className="font-semibold text-emerald-600">
-              Написать в WhatsApp
-            </a>
+            {site.messengers.map((messenger) => (
+              <a
+                key={messenger.label}
+                href={messenger.href}
+                className="font-semibold text-emerald-600"
+              >
+                {messenger.label}: {site.messengerPhoneDisplay}
+              </a>
+            ))}
             <Link
               href="/#callback"
               className="mt-2 rounded-full bg-accent py-3 text-center font-semibold text-white"

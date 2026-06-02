@@ -1,6 +1,7 @@
 "use client";
 
 import { ContactForm } from "@/components/ContactForm";
+import Link from "next/link";
 import { site } from "@/lib/site";
 
 export function Contacts() {
@@ -25,12 +26,15 @@ export function Contacts() {
                 {site.phoneDisplay}
               </a>
               <div className="flex flex-wrap gap-3">
-                <a
-                  href={site.whatsapp}
-                  className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100"
-                >
-                  Написать в WhatsApp
-                </a>
+                {site.messengers.map((messenger) => (
+                  <a
+                    key={messenger.label}
+                    href={messenger.href}
+                    className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100"
+                  >
+                    {messenger.label}: {site.messengerPhoneDisplay}
+                  </a>
+                ))}
               </div>
               {site.locations.map((loc) => {
                 const legalEntity = site.legalEntities.find(
@@ -59,6 +63,12 @@ export function Contacts() {
                       </p>
                     )}
                     <div className="mt-4 flex flex-wrap gap-2">
+                      <Link
+                        href={`/clinics/${loc.slug}`}
+                        className="rounded-full bg-accent px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-accent-dark"
+                      >
+                        Врачи филиала
+                      </Link>
                       {loc.mapLinks.map((link) => (
                         <a
                           key={link.href}

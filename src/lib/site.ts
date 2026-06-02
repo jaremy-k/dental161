@@ -5,7 +5,23 @@ export const site = {
   tagline: "Сеть стоматологических клиник в Ростове-на-Дону",
   phone: "+78632888555",
   phoneDisplay: "+7 (863) 288-85-55",
-  whatsapp: "https://wa.me/79515201573",
+  messengerPhone: "+79951703866",
+  messengerPhoneDisplay: "+7 (995) 170-38-66",
+  whatsapp: "https://wa.me/79951703866",
+  messengers: [
+    {
+      label: "WhatsApp",
+      href: "https://wa.me/79951703866",
+    },
+    {
+      label: "MAX",
+      href: "tel:+79951703866",
+    },
+    {
+      label: "Telegram",
+      href: "tg://resolve?phone=79951703866",
+    },
+  ],
   schedule: "Пн–Сб, 9:00–20:00",
   city: "Ростов-на-Дону",
   reviewLinks: [
@@ -71,6 +87,7 @@ export const site = {
   ],
   locations: [
     {
+      slug: "krasnoarmeyskaya",
       title: "DentalCare Family на Красноармейской",
       address: "Красноармейская ул., 157Б, Ростов-на-Дону",
       phone: "+78632888555",
@@ -93,6 +110,7 @@ export const site = {
       ],
     },
     {
+      slug: "orbitalnaya",
       title: "Клиника на Орбитальной",
       address:
         "Орбитальная ул., 15, микрорайон Северный, Ростов-на-Дону",
@@ -116,6 +134,7 @@ export const site = {
       ],
     },
     {
+      slug: "kulagina",
       title: "Клиника на Кулагина",
       address: "ул. Кулагина, 21, Ростов-на-Дону",
       phone: "+79515201573",
@@ -142,8 +161,13 @@ export const site = {
 
 export const primaryLegalEntity = site.legalEntities[0];
 
+export function getLocationBySlug(slug: string) {
+  return site.locations.find((location) => location.slug === slug);
+}
+
 export const nav = [
   { href: "/o-nas", label: "О нас" },
+  { href: "/clinics", label: "Клиники" },
   { href: "/services", label: "Услуги" },
   { href: "/#doctors", label: "Врачи" },
   { href: "/price", label: "Цены" },
