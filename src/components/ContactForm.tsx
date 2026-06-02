@@ -181,7 +181,7 @@ export function ContactForm() {
             className="font-semibold text-accent hover:text-accent-dark"
             href={messenger.href}
           >
-            {messenger.label}
+            {messenger.label}: {site.messengerPhoneDisplay}
           </a>
         ))}
       </div>
