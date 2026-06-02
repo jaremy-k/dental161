@@ -38,7 +38,7 @@ export const doctors: Doctor[] = [
     focus: ["Имплантация", "Удаление зубов", "Хирургия"],
     location: "Красноармейская",
     locationIds: ["krasnoarmeyskaya"],
-    image: "/images/doctors/spanderashvili.svg",
+    image: "/images/doctors/spanderashvili.jpg",
   },
   {
     slug: "ivanova",
