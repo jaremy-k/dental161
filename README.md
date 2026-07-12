@@ -22,7 +22,26 @@ npm run docker:dev
 
 Сайт: [http://localhost:3000](http://localhost:3000)
 
+Админ-панель: [http://localhost:3000/admin](http://localhost:3000/admin)
+
 Остановка: `docker compose down`
+
+## Админ-панель и PostgreSQL
+
+Docker Compose поднимает PostgreSQL и сохраняет заявки с формы в базу. Админ-панель доступна по адресу `/admin`.
+
+Переменные окружения (можно задать в `.env` рядом с `docker-compose.yml`):
+
+```bash
+DATABASE_URL=postgres://dental:dental@postgres:5432/dental
+JWT_SECRET=change-me-in-production
+ADMIN_EMAIL=admin@dentalcare161.ru
+ADMIN_PASSWORD=admin123
+```
+
+При первом запуске создаётся администратор с указанными `ADMIN_EMAIL` и `ADMIN_PASSWORD`. Сессия хранится в httpOnly-cookie на 7 дней.
+
+Для локальной разработки без Docker скопируйте `.env.example` в `.env.local` и запустите PostgreSQL отдельно или через `docker compose up postgres -d`.
 
 ## Локальный запуск без Docker
 
@@ -49,7 +68,7 @@ MAX_CHAT_ID=chat_id
 Опционально можно переопределить `MAX_API_BASE`, по умолчанию используется
 `https://platform-api.max.ru`. Если MAX не настроен, обработчик попробует
 отправить заявку в Telegram через `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID`.
-Если ни один канал не настроен, заявка принимается приложением и выводится в
+Если ни один канал не настроен, заявка принимается приложением, сохраняется в PostgreSQL (если настроен `DATABASE_URL`) и выводится в
 серверный лог.
 
 ## Сборка

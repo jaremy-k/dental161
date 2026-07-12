@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { saveLead } from "@/lib/leads";
 
 type CallbackPayload = {
   name?: string;
@@ -112,6 +113,18 @@ export async function POST(request: Request) {
     preferredTime: preferredTime || "Не указано",
     createdAt: new Date().toISOString(),
   };
+
+  try {
+    await saveLead({
+      name: lead.name,
+      phone: lead.phone,
+      service: lead.service,
+      clinic: lead.clinic,
+      preferredTime: lead.preferredTime,
+    });
+  } catch (error) {
+    console.error("DentalCare lead save failed", error);
+  }
 
   try {
     const sentToMax = await sendMaxMessage(lead);
