@@ -21,6 +21,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        NEXT_SERVER_ACTIONS_ENCRYPTION_KEY: ${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
     ports:
       - "3000:3000"
     environment:
@@ -29,6 +31,7 @@ services:
       JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
       ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@dentalcare161.ru}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
+      NEXT_SERVER_ACTIONS_ENCRYPTION_KEY: ${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
     depends_on:
       postgres:
         condition: service_healthy
@@ -44,6 +47,7 @@ services:
     volumes:
       - .:/app
       - node_modules:/app/node_modules
+      - next_cache:/app/.next
     environment:
       NODE_ENV: development
       WATCHPACK_POLLING: "true"
@@ -51,10 +55,12 @@ services:
       JWT_SECRET: ${JWT_SECRET:-dev-secret-change-me}
       ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@dentalcare161.ru}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
+      NEXT_SERVER_ACTIONS_ENCRYPTION_KEY: ${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
     depends_on:
       postgres:
         condition: service_healthy
 
 volumes:
   node_modules:
+  next_cache:
   postgres_data:

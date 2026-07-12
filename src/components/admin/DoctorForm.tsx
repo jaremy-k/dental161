@@ -71,7 +71,6 @@ export function DoctorForm({ doctor, clinics }: DoctorFormProps) {
     }
 
     router.push("/admin/doctors");
-    router.refresh();
   }
 
   return (

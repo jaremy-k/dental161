@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
 
 type AdminLoginFormProps = {
   nextPath: string;
@@ -9,7 +8,6 @@ type AdminLoginFormProps = {
 };
 
 export function AdminLoginForm({ nextPath, initialError }: AdminLoginFormProps) {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(initialError || "");
@@ -37,8 +35,7 @@ export function AdminLoginForm({ nextPath, initialError }: AdminLoginFormProps) 
       return;
     }
 
-    router.push(nextPath);
-    router.refresh();
+    window.location.assign(nextPath);
   }
 
   return (

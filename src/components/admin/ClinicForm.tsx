@@ -68,7 +68,6 @@ export function ClinicForm({ clinic }: ClinicFormProps) {
     }
 
     router.push("/admin/clinics");
-    router.refresh();
   }
 
   return (

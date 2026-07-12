@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { Clinic } from "@/lib/content/types";
 
@@ -10,7 +9,6 @@ type AdminClinicsTableProps = {
 };
 
 export function AdminClinicsTable({ clinics }: AdminClinicsTableProps) {
-  const router = useRouter();
   const [loadingId, setLoadingId] = useState<number | null>(null);
   const [error, setError] = useState("");
 
@@ -31,8 +29,7 @@ export function AdminClinicsTable({ clinics }: AdminClinicsTableProps) {
       return;
     }
 
-    router.refresh();
-    setLoadingId(null);
+    window.location.reload();
   }
 
   return (

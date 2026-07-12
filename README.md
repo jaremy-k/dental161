@@ -37,7 +37,10 @@ DATABASE_URL=postgres://dental:dental@postgres:5432/dental
 JWT_SECRET=change-me-in-production
 ADMIN_EMAIL=admin@dentalcare161.ru
 ADMIN_PASSWORD=admin123
+NEXT_SERVER_ACTIONS_ENCRYPTION_KEY=<openssl rand -base64 32>
 ```
+
+`NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` нужен **и при сборке, и при запуске** Docker-образа — иначе возможна ошибка `Failed to find Server Action`.
 
 При первом запуске создаётся администратор с указанными `ADMIN_EMAIL` и `ADMIN_PASSWORD`. Сессия хранится в httpOnly-cookie на 7 дней.
 

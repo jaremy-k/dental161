@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { PriceCatalog, PriceVersion } from "@/lib/content/types";
 
@@ -14,7 +13,6 @@ function cloneCatalog(catalog: PriceCatalog): PriceCatalog {
 }
 
 export function PriceEditor({ catalog, versions }: PriceEditorProps) {
-  const router = useRouter();
   const [draft, setDraft] = useState<PriceCatalog>(() => cloneCatalog(catalog));
   const [label, setLabel] = useState("");
   const [error, setError] = useState("");
@@ -48,8 +46,7 @@ export function PriceEditor({ catalog, versions }: PriceEditorProps) {
     }
 
     setLabel("");
-    router.refresh();
-    setLoading(null);
+    window.location.reload();
   }
 
   async function publishVersion(id: number) {
@@ -71,8 +68,7 @@ export function PriceEditor({ catalog, versions }: PriceEditorProps) {
       return;
     }
 
-    router.refresh();
-    setLoading(null);
+    window.location.reload();
   }
 
   function updateCategoryTitle(index: number, title: string) {
