@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { callbackClinic, site } from "@/lib/site";
 
 export function Hero() {
   return (
@@ -30,10 +30,10 @@ export function Hero() {
               Получить план лечения
             </a>
             <a
-              href={`tel:${site.phone}`}
+              href={`tel:${callbackClinic.phone}`}
               className="rounded-full border border-slate-200 bg-white px-8 py-3.5 text-base font-semibold text-slate-800 transition hover:border-accent hover:text-accent"
             >
-              Позвонить сейчас
+              Позвонить: {callbackClinic.phoneDisplay}
             </a>
           </div>
           <dl className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3">

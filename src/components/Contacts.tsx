@@ -2,7 +2,7 @@
 
 import { ContactForm } from "@/components/ContactForm";
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { callbackClinic, site } from "@/lib/site";
 import type { Clinic } from "@/lib/content/types";
 
 type ContactsProps = {
@@ -25,11 +25,14 @@ export function Contacts({ locations }: ContactsProps) {
 
             <div className="mt-8 space-y-6">
               <a
-                href={`tel:${site.phone}`}
+                href={`tel:${callbackClinic.phone}`}
                 className="block text-2xl font-bold text-accent hover:text-accent-dark"
               >
-                {site.phoneDisplay}
+                {callbackClinic.phoneDisplay}
               </a>
+              <p className="text-sm text-slate-500">
+                По заявкам с сайта — {callbackClinic.title}
+              </p>
               <div className="flex flex-wrap gap-3">
                 {site.messengers.map((messenger) => (
                   <a

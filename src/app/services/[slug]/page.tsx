@@ -12,7 +12,7 @@ import {
   getPublishedPriceCatalog,
   getRelatedPriceCategories,
 } from "@/lib/repositories/prices";
-import { site } from "@/lib/site";
+import { callbackClinic, site } from "@/lib/site";
 
 export const revalidate = 60;
 
@@ -130,10 +130,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     Получить план и стоимость
                   </Link>
                   <a
-                    href={`tel:${site.phone}`}
+                    href={`tel:${callbackClinic.phone}`}
                     className="rounded-full border border-slate-200 bg-white px-7 py-3 font-semibold text-slate-800 transition hover:border-accent hover:text-accent"
                   >
-                    {site.phoneDisplay}
+                    {callbackClinic.phoneDisplay}
                   </a>
                 </div>
               </div>

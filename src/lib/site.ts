@@ -165,6 +165,9 @@ export function getLocationBySlug(slug: string) {
   return site.locations.find((location) => location.slug === slug);
 }
 
+/** Телефон для обратной связи по заявкам с сайта — клиника на Орбитальной */
+export const callbackClinic = getLocationBySlug("orbitalnaya")!;
+
 export const nav = [
   { href: "/o-nas", label: "О нас" },
   { href: "/clinics", label: "Клиники" },

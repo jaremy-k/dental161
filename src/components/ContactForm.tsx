@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { dentalServices } from "@/lib/services";
-import { site } from "@/lib/site";
+import { callbackClinic, site } from "@/lib/site";
 import type { Clinic } from "@/lib/content/types";
 
 type SubmitState = "idle" | "loading" | "success" | "error";
@@ -177,8 +177,11 @@ export function ContactForm({ clinics }: ContactFormProps) {
       )}
 
       <div className="mt-5 flex flex-wrap gap-3 text-sm">
-        <a className="font-semibold text-accent hover:text-accent-dark" href={`tel:${site.phone}`}>
-          Позвонить
+        <a
+          className="font-semibold text-accent hover:text-accent-dark"
+          href={`tel:${callbackClinic.phone}`}
+        >
+          Позвонить: {callbackClinic.phoneDisplay}
         </a>
         {site.messengers.map((messenger) => (
           <a
