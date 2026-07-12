@@ -1,5 +1,4 @@
 import { ensureDatabaseReady, getPool, isDatabaseConfigured } from "@/lib/db";
-import { seedContentIfEmpty } from "@/lib/content/seed";
 import type { Clinic, ClinicInput } from "@/lib/content/types";
 import { site } from "@/lib/site";
 
@@ -60,7 +59,6 @@ function getStaticClinics(): Clinic[] {
 
 async function queryClinics(includeDeleted: boolean) {
   await ensureDatabaseReady();
-  await seedContentIfEmpty();
 
   const pool = getPool();
   const result = await pool.query<ClinicRow>(
@@ -102,13 +100,11 @@ export async function listAdminClinics(includeDeleted = true) {
   }
 
   await ensureDatabaseReady();
-  await seedContentIfEmpty();
   return queryClinics(includeDeleted);
 }
 
 export async function getAdminClinicById(id: number) {
   await ensureDatabaseReady();
-  await seedContentIfEmpty();
 
   const pool = getPool();
   const result = await pool.query<ClinicRow>(

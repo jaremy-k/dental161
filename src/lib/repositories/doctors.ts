@@ -1,5 +1,4 @@
 import { ensureDatabaseReady, getPool, isDatabaseConfigured } from "@/lib/db";
-import { seedContentIfEmpty } from "@/lib/content/seed";
 import type { Doctor, DoctorInput } from "@/lib/content/types";
 import { doctors as defaultDoctors } from "@/lib/doctors";
 
@@ -52,7 +51,6 @@ function getStaticDoctors(): Doctor[] {
 
 async function queryDoctors(includeDeleted: boolean) {
   await ensureDatabaseReady();
-  await seedContentIfEmpty();
 
   const pool = getPool();
   const result = await pool.query<DoctorRow>(
@@ -94,13 +92,11 @@ export async function listAdminDoctors(includeDeleted = true) {
   }
 
   await ensureDatabaseReady();
-  await seedContentIfEmpty();
   return queryDoctors(includeDeleted);
 }
 
 export async function getAdminDoctorById(id: number) {
   await ensureDatabaseReady();
-  await seedContentIfEmpty();
 
   const pool = getPool();
   const result = await pool.query<DoctorRow>(

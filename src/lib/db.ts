@@ -158,6 +158,8 @@ export async function ensureDatabaseReady() {
     globalForPg.pgReady = (async () => {
       await ensureSchema();
       await ensureDefaultAdmin();
+      const { seedContentIfEmpty } = await import("@/lib/content/seed");
+      await seedContentIfEmpty();
     })();
   }
 

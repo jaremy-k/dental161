@@ -2,7 +2,6 @@ import { ensureDatabaseReady, getPool, isDatabaseConfigured } from "@/lib/db";
 import {
   publishPriceCatalog,
   savePriceDraft,
-  seedContentIfEmpty,
 } from "@/lib/content/seed";
 import type { PriceCatalog, PriceVersion } from "@/lib/content/types";
 import { getDefaultPriceCatalog } from "@/lib/prices";
@@ -43,7 +42,6 @@ export async function getPublishedPriceCatalog(): Promise<PriceCatalog> {
 
   try {
     await ensureDatabaseReady();
-    await seedContentIfEmpty();
 
     const pool = getPool();
     const result = await pool.query<PriceVersionRow>(
@@ -68,7 +66,6 @@ export async function getPublishedPriceCatalog(): Promise<PriceCatalog> {
 
 export async function listPriceVersions(): Promise<PriceVersion[]> {
   await ensureDatabaseReady();
-  await seedContentIfEmpty();
 
   const pool = getPool();
   const result = await pool.query<PriceVersionRow>(
@@ -86,7 +83,6 @@ export async function listPriceVersions(): Promise<PriceVersion[]> {
 
 export async function getPriceVersionById(id: number) {
   await ensureDatabaseReady();
-  await seedContentIfEmpty();
 
   const pool = getPool();
   const result = await pool.query<PriceVersionRow>(
