@@ -10,7 +10,7 @@ import { getPublicClinics } from "@/lib/repositories/clinics";
 import { getPublicDoctors } from "@/lib/repositories/doctors";
 import { getPublishedPriceCatalog } from "@/lib/repositories/prices";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function Home() {
   const [doctors, priceCatalog, locations] = await Promise.all([

@@ -26,6 +26,19 @@ npm run docker:dev
 
 Остановка: `docker compose down`
 
+## Nginx на хосте (без Docker)
+
+Конфиг для reverse proxy: [`deploy/nginx/dentalcare161.conf`](deploy/nginx/dentalcare161.conf)
+
+Приложение слушает только `127.0.0.1:3000` — снаружи доступ через nginx на 80/443.
+
+```bash
+sudo cp deploy/nginx/dentalcare161.conf /etc/nginx/sites-available/dentalcare161
+sudo ln -sf /etc/nginx/sites-available/dentalcare161 /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+sudo certbot --nginx -d dentalcare161.ru -d www.dentalcare161.ru
+```
+
 ## Админ-панель и PostgreSQL
 
 Docker Compose поднимает PostgreSQL и сохраняет заявки с формы в базу. Админ-панель доступна по адресу `/admin`.

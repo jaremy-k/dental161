@@ -7,7 +7,7 @@ import { getPublicClinics } from "@/lib/repositories/clinics";
 import { getDoctorsByLocationSlug } from "@/lib/repositories/doctors";
 import { site } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Клиники",

@@ -5,6 +5,7 @@ import {
   getSessionCookieName,
   getSessionMaxAgeSeconds,
 } from "@/lib/auth";
+import { getSessionCookieBaseOptions } from "@/lib/cookie-options";
 import { isDatabaseConfigured } from "@/lib/db";
 
 type LoginPayload = {
@@ -45,10 +46,7 @@ export async function POST(request: Request) {
     const response = NextResponse.json({ ok: true });
 
     response.cookies.set(getSessionCookieName(), token, {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      path: "/",
+      ...getSessionCookieBaseOptions(request),
       maxAge: getSessionMaxAgeSeconds(),
     });
 

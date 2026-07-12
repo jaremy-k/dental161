@@ -14,7 +14,7 @@ import {
 } from "@/lib/repositories/prices";
 import { site } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 type ServicePageProps = {
   params: Promise<{

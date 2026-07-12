@@ -4,7 +4,7 @@ import { StickyMobileCta } from "@/components/StickyMobileCta";
 import { getPublicClinics } from "@/lib/repositories/clinics";
 import { site } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

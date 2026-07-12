@@ -7,7 +7,7 @@ import { PriceSearchTable } from "@/components/PriceSearchTable";
 import { getPublishedPriceCatalog } from "@/lib/repositories/prices";
 import { site } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Цены",

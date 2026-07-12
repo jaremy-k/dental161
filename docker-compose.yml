@@ -24,7 +24,7 @@ services:
       args:
         NEXT_SERVER_ACTIONS_ENCRYPTION_KEY: ${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     environment:
       NODE_ENV: production
       DATABASE_URL: postgres://dental:dental@postgres:5432/dental
@@ -32,6 +32,7 @@ services:
       ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@dentalcare161.ru}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
       NEXT_SERVER_ACTIONS_ENCRYPTION_KEY: ${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
     depends_on:
       postgres:
         condition: service_healthy
@@ -56,6 +57,7 @@ services:
       ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@dentalcare161.ru}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
       NEXT_SERVER_ACTIONS_ENCRYPTION_KEY: ${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
     depends_on:
       postgres:
         condition: service_healthy

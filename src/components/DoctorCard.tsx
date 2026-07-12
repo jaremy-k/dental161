@@ -1,11 +1,12 @@
 import Image from "next/image";
-import type { Doctor } from "@/lib/doctors";
+import type { Doctor } from "@/lib/content/types";
 
 type DoctorCardProps = {
   doctor: Doctor;
+  priority?: boolean;
 };
 
-export function DoctorCard({ doctor }: DoctorCardProps) {
+export function DoctorCard({ doctor, priority = false }: DoctorCardProps) {
   return (
     <article className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm transition hover:border-accent/30 hover:shadow-md">
       <div className="relative aspect-[3/4] overflow-hidden bg-slate-200">
@@ -13,6 +14,8 @@ export function DoctorCard({ doctor }: DoctorCardProps) {
           src={doctor.image}
           alt={doctor.name}
           fill
+          loading={priority ? undefined : "lazy"}
+          priority={priority}
           className="object-cover object-top"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
