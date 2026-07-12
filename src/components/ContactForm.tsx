@@ -3,10 +3,15 @@
 import { FormEvent, useMemo, useState } from "react";
 import { dentalServices } from "@/lib/services";
 import { site } from "@/lib/site";
+import type { Clinic } from "@/lib/content/types";
 
 type SubmitState = "idle" | "loading" | "success" | "error";
 
-export function ContactForm() {
+type ContactFormProps = {
+  clinics: Clinic[];
+};
+
+export function ContactForm({ clinics }: ContactFormProps) {
   const [state, setState] = useState<SubmitState>("idle");
   const [message, setMessage] = useState("");
 
@@ -114,7 +119,7 @@ export function ContactForm() {
             defaultValue=""
           >
             <option value="">Любая удобная</option>
-            {site.locations.map((location) => (
+            {clinics.map((location) => (
               <option key={location.address} value={location.title}>
                 {location.title}
               </option>

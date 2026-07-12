@@ -6,8 +6,11 @@ import { ContactForm } from "@/components/ContactForm";
 import { DoctorCard } from "@/components/DoctorCard";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { getDoctorsByLocationSlug } from "@/lib/doctors";
-import { getLocationBySlug, site } from "@/lib/site";
+import { getClinicBySlug, getPublicClinics } from "@/lib/repositories/clinics";
+import { getDoctorsByLocationSlug } from "@/lib/repositories/doctors";
+import { site } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 type ClinicPageProps = {
   params: Promise<{
@@ -15,15 +18,16 @@ type ClinicPageProps = {
   }>;
 };
 
-export function generateStaticParams() {
-  return site.locations.map((location) => ({ slug: location.slug }));
+export async function generateStaticParams() {
+  const locations = await getPublicClinics();
+  return locations.map((location) => ({ slug: location.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: ClinicPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const location = getLocationBySlug(slug);
+  const location = await getClinicBySlug(slug);
 
   if (!location) {
     return {};
@@ -48,13 +52,16 @@ export async function generateMetadata({
 
 export default async function ClinicPage({ params }: ClinicPageProps) {
   const { slug } = await params;
-  const location = getLocationBySlug(slug);
+  const [location, clinicDoctors, clinics] = await Promise.all([
+    getClinicBySlug(slug),
+    getDoctorsByLocationSlug(slug),
+    getPublicClinics(),
+  ]);
 
   if (!location) {
     notFound();
   }
 
-  const clinicDoctors = getDoctorsByLocationSlug(location.slug);
   const legalEntity = site.legalEntities.find(
     (entity) => entity.id === location.legalEntityId,
   );
@@ -179,7 +186,7 @@ export default async function ClinicPage({ params }: ClinicPageProps) {
               </p>
             </div>
             <div id="callback" className="scroll-mt-24">
-              <ContactForm />
+              <ContactForm clinics={clinics} />
             </div>
           </div>
         </section>

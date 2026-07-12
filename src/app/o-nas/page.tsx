@@ -5,7 +5,11 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Doctors } from "@/components/Doctors";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { getPublicClinics } from "@/lib/repositories/clinics";
+import { getPublicDoctors } from "@/lib/repositories/doctors";
 import { site } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "О нас",
@@ -25,7 +29,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [locations, doctors] = await Promise.all([
+    getPublicClinics(),
+    getPublicDoctors(),
+  ]);
+
   return (
     <>
       <Header />
@@ -81,7 +90,7 @@ export default function AboutPage() {
             <div className="mt-8 rounded-3xl bg-accent-light p-8">
               <h3 className="font-semibold text-slate-900">Наши клиники</h3>
               <ul className="mt-4 space-y-4 sm:grid sm:grid-cols-2 sm:gap-4 sm:space-y-0">
-                {site.locations.map((loc) => (
+                {locations.map((loc) => (
                   <li key={loc.address}>
                     <p className="font-medium text-slate-800">{loc.title}</p>
                     <p className="text-sm text-slate-600">{loc.address}</p>
@@ -124,7 +133,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <Doctors />
+        <Doctors doctors={doctors} />
       </main>
       <Footer />
     </>

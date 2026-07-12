@@ -1,9 +1,14 @@
 import type { MetadataRoute } from "next";
+import { getPublicClinics } from "@/lib/repositories/clinics";
 import { dentalServices } from "@/lib/services";
 import { site } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = "force-dynamic";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const locations = await getPublicClinics();
+
   const staticPages = [
     "",
     "/clinics",
@@ -26,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  const clinicPages = site.locations.map((location) => ({
+  const clinicPages = locations.map((location) => ({
     url: `${site.url}/clinics/${location.slug}`,
     lastModified: now,
     changeFrequency: "weekly" as const,

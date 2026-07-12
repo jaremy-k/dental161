@@ -3,8 +3,13 @@
 import { ContactForm } from "@/components/ContactForm";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import type { Clinic } from "@/lib/content/types";
 
-export function Contacts() {
+type ContactsProps = {
+  locations: Clinic[];
+};
+
+export function Contacts({ locations }: ContactsProps) {
   return (
     <section id="contacts" className="bg-slate-50 py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -36,7 +41,7 @@ export function Contacts() {
                   </a>
                 ))}
               </div>
-              {site.locations.map((loc) => {
+              {locations.map((loc) => {
                 const legalEntity = site.legalEntities.find(
                   (entity) => entity.id === loc.legalEntityId,
                 );
@@ -86,7 +91,7 @@ export function Contacts() {
           </div>
 
           <div id="callback" className="scroll-mt-24">
-            <ContactForm />
+            <ContactForm clinics={locations} />
           </div>
         </div>
       </div>

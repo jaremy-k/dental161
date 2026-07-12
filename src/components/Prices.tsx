@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { PriceTable } from "@/components/PriceTable";
-import {
-  priceCategories,
-  priceDisclaimer,
-  treatmentPackages,
-} from "@/lib/prices";
+import type { PriceCatalog } from "@/lib/content/types";
 
-const priceHighlights = priceCategories.flatMap((c) => c.items).slice(0, 6);
+type PricesProps = {
+  catalog: PriceCatalog;
+};
 
-export function Prices() {
+export function Prices({ catalog }: PricesProps) {
+  const priceHighlights = catalog.priceCategories
+    .flatMap((category) => category.items)
+    .slice(0, 6);
   return (
     <section id="prices" className="bg-slate-900 py-20 text-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -40,7 +41,7 @@ export function Prices() {
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-4">
-          {treatmentPackages.map((item) => (
+          {catalog.treatmentPackages.map((item) => (
             <article
               key={item.title}
               className="rounded-2xl border border-slate-700 bg-slate-800/40 p-5"
@@ -71,7 +72,7 @@ export function Prices() {
           />
         </div>
 
-        <p className="mt-6 text-xs text-slate-400">{priceDisclaimer}</p>
+        <p className="mt-6 text-xs text-slate-400">{catalog.disclaimer}</p>
         <p className="mt-2 text-sm text-slate-400">
           <Link href="/price" className="text-accent hover:underline">
             Смотреть все цены →

@@ -6,8 +6,19 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Prices } from "@/components/Prices";
 import { Services } from "@/components/Services";
+import { getPublicClinics } from "@/lib/repositories/clinics";
+import { getPublicDoctors } from "@/lib/repositories/doctors";
+import { getPublishedPriceCatalog } from "@/lib/repositories/prices";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const [doctors, priceCatalog, locations] = await Promise.all([
+    getPublicDoctors(),
+    getPublishedPriceCatalog(),
+    getPublicClinics(),
+  ]);
+
   return (
     <>
       <Header />
@@ -15,9 +26,9 @@ export default function Home() {
         <Hero />
         <Services />
         <Advantages />
-        <Doctors />
-        <Prices />
-        <Contacts />
+        <Doctors doctors={doctors} />
+        <Prices catalog={priceCatalog} />
+        <Contacts locations={locations} />
       </main>
       <Footer />
     </>

@@ -169,3 +169,15 @@ export const priceCategories: PriceCategory[] = [
 
 export const priceDisclaimer =
   "Имеются противопоказания, необходима консультация специалиста. Цены носят информационный характер и не являются публичной офертой (ст. 437 ГК РФ).";
+
+export function getDefaultPriceCatalog() {
+  return {
+    intro: { ...priceIntro },
+    treatmentPackages: treatmentPackages.map((item) => ({ ...item })),
+    priceCategories: priceCategories.map((category) => ({
+      title: category.title,
+      items: category.items.map((item) => ({ ...item })),
+    })),
+    disclaimer: priceDisclaimer,
+  };
+}

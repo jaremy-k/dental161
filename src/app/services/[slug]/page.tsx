@@ -7,8 +7,14 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { PriceTable } from "@/components/PriceTable";
 import { dentalServices, getServiceBySlug } from "@/lib/services";
-import { priceCategories } from "@/lib/prices";
+import { getPublicClinics } from "@/lib/repositories/clinics";
+import {
+  getPublishedPriceCatalog,
+  getRelatedPriceCategories,
+} from "@/lib/repositories/prices";
 import { site } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 type ServicePageProps = {
   params: Promise<{
@@ -47,19 +53,11 @@ export async function generateMetadata({
   };
 }
 
-function getRelatedPrices(terms: string[]) {
-  const normalizedTerms = terms.map((term) => term.toLowerCase());
-
-  return priceCategories
-    .map((category) => ({
-      ...category,
-      items: category.items.filter((item) =>
-        normalizedTerms.some((term) =>
-          `${category.title} ${item.name}`.toLowerCase().includes(term),
-        ),
-      ),
-    }))
-    .filter((category) => category.items.length > 0);
+function getRelatedPrices(
+  catalog: Awaited<ReturnType<typeof getPublishedPriceCatalog>>,
+  terms: string[],
+) {
+  return getRelatedPriceCategories(catalog, terms);
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {
@@ -70,7 +68,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
     notFound();
   }
 
-  const relatedPrices = getRelatedPrices(service.relatedPriceTerms);
+  const [priceCatalog, clinics] = await Promise.all([
+    getPublishedPriceCatalog(),
+    getPublicClinics(),
+  ]);
+
+  const relatedPrices = getRelatedPrices(priceCatalog, service.relatedPriceTerms);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalProcedure",
@@ -81,7 +84,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       name: site.name,
       telephone: site.phone,
       url: site.url,
-      address: site.locations.map((location) => ({
+      address: clinics.map((location) => ({
         "@type": "PostalAddress",
         streetAddress: location.address,
         addressLocality: site.city,
@@ -210,7 +213,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
               </div>
             </div>
             <div id="callback" className="scroll-mt-24">
-              <ContactForm />
+              <ContactForm clinics={clinics} />
             </div>
           </div>
         </section>

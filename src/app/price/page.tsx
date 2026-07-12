@@ -4,13 +4,10 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { PriceSearchTable } from "@/components/PriceSearchTable";
-import {
-  priceCategories,
-  priceDisclaimer,
-  priceIntro,
-  treatmentPackages,
-} from "@/lib/prices";
+import { getPublishedPriceCatalog } from "@/lib/repositories/prices";
 import { site } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Цены",
@@ -30,7 +27,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PricePage() {
+export default async function PricePage() {
+  const priceCatalog = await getPublishedPriceCatalog();
+
   return (
     <>
       <Header />
@@ -39,10 +38,10 @@ export default function PricePage() {
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Breadcrumbs items={[{ label: "Цены" }]} />
             <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              {priceIntro.title}
+              {priceCatalog.intro.title}
             </h1>
             <p className="mt-4 max-w-3xl text-lg leading-relaxed text-slate-600">
-              {priceIntro.lead}
+              {priceCatalog.intro.lead}
             </p>
           </div>
         </section>
@@ -50,7 +49,7 @@ export default function PricePage() {
         <section className="py-12 sm:py-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="mb-12 grid gap-4 md:grid-cols-4">
-              {treatmentPackages.map((item) => (
+              {priceCatalog.treatmentPackages.map((item) => (
                 <article
                   key={item.title}
                   className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
@@ -68,10 +67,10 @@ export default function PricePage() {
               ))}
             </div>
 
-            <PriceSearchTable categories={priceCategories} />
+            <PriceSearchTable categories={priceCatalog.priceCategories} />
 
             <div className="mt-12 rounded-2xl bg-accent-light p-6 sm:p-8">
-              <p className="text-slate-700">{priceIntro.note}</p>
+              <p className="text-slate-700">{priceCatalog.intro.note}</p>
               <p className="mt-4 text-slate-600">
                 Стоимость может меняться в зависимости от диагностики,
                 материалов и объёма лечения. Перед началом процедур врач
@@ -93,7 +92,7 @@ export default function PricePage() {
               </div>
             </div>
 
-            <p className="mt-8 text-xs text-slate-500">{priceDisclaimer}</p>
+            <p className="mt-8 text-xs text-slate-500">{priceCatalog.disclaimer}</p>
           </div>
         </section>
       </main>

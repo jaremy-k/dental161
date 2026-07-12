@@ -1,7 +1,11 @@
 import { DoctorCard } from "@/components/DoctorCard";
-import { doctors } from "@/lib/doctors";
+import type { Doctor } from "@/lib/content/types";
 
-export function Doctors() {
+type DoctorsProps = {
+  doctors: Doctor[];
+};
+
+export function Doctors({ doctors }: DoctorsProps) {
   return (
     <section id="doctors" className="bg-white py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
