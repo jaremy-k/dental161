@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `О клинике — ${site.brand}`,
     description:
-      "Две стоматологические клиники DentalCare в Ростове-на-Дону, врачи, направления лечения и преимущества.",
+      "Три стоматологические клиники DentalCare в Ростове-на-Дону, врачи, направления лечения и преимущества.",
     url: `${site.url}/o-nas`,
     siteName: site.brand,
     locale: "ru_RU",

@@ -18,7 +18,7 @@ export function Hero() {
             лечения
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
-            Имплантация, протезирование, терапия и детская стоматология в двух
+            Имплантация, протезирование, терапия и детская стоматология в трёх
             клиниках Ростова. Врач объяснит варианты, сроки и стоимость, а
             лечение можно начать в рассрочку 0% до 12 месяцев.
           </p>
@@ -38,7 +38,7 @@ export function Hero() {
           </div>
           <dl className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3">
             <div>
-              <dt className="text-2xl font-bold text-accent">2</dt>
+              <dt className="text-2xl font-bold text-accent">3</dt>
               <dd className="mt-1 text-sm text-slate-600">клиники в городе</dd>
             </div>
             <div>
@@ -48,7 +48,7 @@ export function Hero() {
             <div className="col-span-2 sm:col-span-1">
               <dt className="text-2xl font-bold text-accent">9–20</dt>
               <dd className="mt-1 text-sm text-slate-600">
-                пн–сб, без выходных вечером
+                пн–сб 9–20, вс — выходной
               </dd>
             </div>
           </dl>

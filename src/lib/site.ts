@@ -22,7 +22,7 @@ export const site = {
       href: "tg://resolve?phone=79951703866",
     },
   ],
-  schedule: "Пн–Сб, 9:00–20:00",
+  schedule: "Пн–Сб, 9:00–20:00 · Вс выходной",
   city: "Ростов-на-Дону",
   reviewLinks: [
     {
