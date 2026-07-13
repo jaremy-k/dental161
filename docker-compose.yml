@@ -33,6 +33,11 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
       NEXT_SERVER_ACTIONS_ENCRYPTION_KEY: ${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      MAX_BOT_TOKEN: ${MAX_BOT_TOKEN:-}
+      MAX_CHAT_ID: ${MAX_CHAT_ID:-}
+      MAX_API_BASE: ${MAX_API_BASE:-https://platform-api2.max.ru}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
     depends_on:
       postgres:
         condition: service_healthy
@@ -58,6 +63,11 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
       NEXT_SERVER_ACTIONS_ENCRYPTION_KEY: ${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      MAX_BOT_TOKEN: ${MAX_BOT_TOKEN:-}
+      MAX_CHAT_ID: ${MAX_CHAT_ID:-}
+      MAX_API_BASE: ${MAX_API_BASE:-https://platform-api2.max.ru}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
     depends_on:
       postgres:
         condition: service_healthy

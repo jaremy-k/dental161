@@ -42,7 +42,7 @@ async function sendMaxMessage(lead: Lead) {
     return false;
   }
 
-  const apiBase = process.env.MAX_API_BASE || "https://platform-api.max.ru";
+  const apiBase = process.env.MAX_API_BASE || "https://platform-api2.max.ru";
   const url = new URL("/messages", apiBase);
   url.searchParams.set("chat_id", chatId);
 
