@@ -17,11 +17,12 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
 FROM base AS runner
-RUN apk add --no-cache libc6-compat ca-certificates
+RUN apk add --no-cache libc6-compat ca-certificates curl
+COPY docker/certs/install-russian-ca.sh /tmp/install-russian-ca.sh
+RUN chmod +x /tmp/install-russian-ca.sh && /tmp/install-russian-ca.sh && rm /tmp/install-russian-ca.sh
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-COPY docker/certs/russian_trusted_ca.pem /etc/ssl/certs/russian_trusted_ca.pem
 ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/russian_trusted_ca.pem
 RUN addgroup --system --gid 1001 nodejs \
   && adduser --system --uid 1001 nextjs
