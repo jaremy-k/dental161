@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { httpsPostJson } from "@/lib/max-fetch";
 import { saveLead } from "@/lib/leads";
 
 type CallbackPayload = {
@@ -46,20 +47,21 @@ async function sendMaxMessage(lead: Lead) {
   const url = new URL("/messages", apiBase);
   url.searchParams.set("chat_id", chatId);
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
+  const response = await httpsPostJson(
+    url,
+    {
       Authorization: token,
-      "Content-Type": "application/json",
     },
-    body: JSON.stringify({
+    {
       text: formatLeadMessage(lead),
       notify: true,
-    }),
-  });
+    },
+  );
 
-  if (!response.ok) {
-    throw new Error(`MAX request failed with ${response.status}`);
+  if (response.statusCode < 200 || response.statusCode >= 300) {
+    throw new Error(
+      `MAX request failed with ${response.statusCode}: ${response.body.slice(0, 200)}`,
+    );
   }
 
   return true;
@@ -114,6 +116,8 @@ export async function POST(request: Request) {
     createdAt: new Date().toISOString(),
   };
 
+  let leadSaved = false;
+
   try {
     await saveLead({
       name: lead.name,
@@ -122,6 +126,7 @@ export async function POST(request: Request) {
       clinic: lead.clinic,
       preferredTime: lead.preferredTime,
     });
+    leadSaved = true;
   } catch (error) {
     console.error("DentalCare lead save failed", error);
   }
@@ -136,10 +141,14 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("DentalCare callback delivery failed", error);
 
-      return NextResponse.json(
-        { ok: false, error: "Не удалось отправить заявку." },
-        { status: 502 },
-      );
+    if (leadSaved) {
+      return NextResponse.json({ ok: true, delivery: "pending" });
+    }
+
+    return NextResponse.json(
+      { ok: false, error: "Не удалось отправить заявку." },
+      { status: 502 },
+    );
   }
 
   return NextResponse.json({ ok: true });
