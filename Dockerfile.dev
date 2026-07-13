@@ -1,7 +1,9 @@
 FROM node:22-alpine
 
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat ca-certificates
 WORKDIR /app
+COPY docker/certs/russian_trusted_ca.pem /etc/ssl/certs/russian_trusted_ca.pem
+ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/russian_trusted_ca.pem
 
 COPY package.json package-lock.json ./
 RUN npm ci
